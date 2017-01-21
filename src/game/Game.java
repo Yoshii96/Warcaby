@@ -13,7 +13,7 @@ public class Game {
     
     
     public static void main(String[] args) {
-        Game game = new Game(9,3);
+        Game game = new Game(8,3);
     }
     
     public void passToVisual(Data data){

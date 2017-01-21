@@ -76,7 +76,7 @@ public class Visual {
                         x = i;
                         y = j;
                         int[][] board = data.getBoard();
-                        if(board[x][y] == 2){
+                        if (board[x][y] == 2) {
                             return;
                         }
                         break;
@@ -124,38 +124,42 @@ public class Visual {
             }
 
             int[][] board = data.getBoard();
-            for (int i = 0; i < SIZEOFBOARD; i++) {
-                for (int j = 0; j < SIZEOFBOARD; j++) {
-                    if (board[i][j] == 0) {
-                        buttons[i][j].setEnabled(false);
-                    } else if (board[i][j] == 1) {
-                        buttons[i][j].setEnabled(true);
-                        buttons[i][j].setIcon(new ImageIcon(imgWHITE));
-                    } else if (board[i][j] == 2) {
-                        buttons[i][j].setEnabled(true);
-                        buttons[i][j].setIcon(new ImageIcon(imgRED));
-                    } else {
-                        System.out.println("Błąd. Nieprawidłowa wartość w tablicy");
-                    }
+            if (board != null) {
+                for (int i = 0; i < SIZEOFBOARD; i++) {
+                    for (int j = 0; j < SIZEOFBOARD; j++) {
+                        if (board[i][j] == 0) {
+                            buttons[i][j].setEnabled(false);
+                        } else if (board[i][j] == 1) {
+                            buttons[i][j].setEnabled(true);
+                            buttons[i][j].setIcon(new ImageIcon(imgWHITE));
+                        } else if (board[i][j] == -1) {
+                            buttons[i][j].setEnabled(true);
+                            buttons[i][j].setIcon(new ImageIcon(imgRED));
+                        } else {
+                            System.out.println("Błąd. Nieprawidłowa wartość w tablicy");
+                        }
 
+                    }
                 }
             }
 
             int[] clicked = data.getClicked();
-            if (clicked[0] != -1 && clicked[1] != -1) {
+            if (clicked != null) {
                 buttons[clicked[0]][clicked[1]].setBackground(Color.LIGHT_GRAY);
             }
 
             int[][] moves = data.getMoves();
-            for (int i = 0; i < 4; i++) {
-                if (moves[i][0] != -1 && moves[i][1] != -1) {
-                    buttons[moves[i][0]][moves[i][1]].setEnabled(true);
-                    buttons[moves[i][0]][moves[i][1]].setBackground(Color.LIGHT_GRAY);
+            if (moves != null) {
+                for (int i = 0; i < 4; i++) {
+                    if (moves[i][0] != -1 && moves[i][1] != -1) {
+                        buttons[moves[i][0]][moves[i][1]].setEnabled(true);
+                        buttons[moves[i][0]][moves[i][1]].setBackground(Color.LIGHT_GRAY);
+                    }
                 }
             }
 
             int[][] lastmove = data.getLastMove();
-            if (lastmove[0][0] != -1 && lastmove[0][1] != -1 && lastmove[1][0] != -1 && lastmove[1][1] != -1) {
+            if (lastmove != null) {
                 buttons[lastmove[0][0]][lastmove[0][1]].setBackground(Color.LIGHT_GRAY);
                 buttons[lastmove[1][0]][lastmove[1][1]].setBackground(Color.LIGHT_GRAY);
             }
