@@ -76,7 +76,7 @@ public class Visual {
                         x = i;
                         y = j;
                         int[][] board = data.getBoard();
-                        if (board[x][y] == -1 || board[x][y] == -2) {
+                        if (board[x][y] == 1 || board[x][y] == 2) {
                             return;
                         }
                         break;
@@ -100,6 +100,8 @@ public class Visual {
                 if(data.getChosenMove() == -1){
                     System.out.println("Użytkownik wybrał zły pion");
                 }else{
+                    System.out.println("Wysyłam dane");
+                    data.setLastMove(null);
                     sendData(data);
                 }
             }else{
@@ -149,16 +151,17 @@ public class Visual {
                     for (int j = 0; j < SIZEOFBOARD; j++) {
                         if (board[i][j] == 0) {
                             buttons[i][j].setEnabled(false);
-                        } else if (board[i][j] == 1) {
-                            buttons[i][j].setEnabled(true);
-                            buttons[i][j].setIcon(new ImageIcon(imgWHITE));
+                            buttons[i][j].setIcon(null);
                         } else if (board[i][j] == -1) {
                             buttons[i][j].setEnabled(true);
+                            buttons[i][j].setIcon(new ImageIcon(imgWHITE));
+                        } else if (board[i][j] == 1) {
+                            buttons[i][j].setEnabled(true);
                             buttons[i][j].setIcon(new ImageIcon(imgRED));
-                        } else if (board[i][j] == 2){
+                        } else if (board[i][j] == -2){
                             buttons[i][j].setEnabled(true);
                             buttons[i][j].setIcon(new ImageIcon(imgWHITEQ));
-                        } else if( board[i][j] == -2){
+                        } else if( board[i][j] == 2){
                             buttons[i][j].setEnabled(true);
                             buttons[i][j].setIcon(new ImageIcon(imgREDQ));
                         } else {
@@ -197,6 +200,7 @@ public class Visual {
 
     public void getData(Data data) {
         this.data = data;
+        data.printData();
         updateBoard(data);
     }
 
