@@ -76,7 +76,7 @@ public class Visual {
                         x = i;
                         y = j;
                         int[][] board = data.getBoard();
-                        if (board[x][y] == 2) {
+                        if (board[x][y] == -1 || board[x][y] == -2) {
                             return;
                         }
                         break;
@@ -103,9 +103,13 @@ public class Visual {
         try {
             Image imgRED = ImageIO.read(new File("src/resources/RED.png"));
             Image imgWHITE = ImageIO.read(new File("src/resources/WHITE.png"));
+            Image imgREDQ = ImageIO.read(new File("src/resources/REDQUEEN.png"));
+            Image imgWHITEQ = ImageIO.read(new File("src/resources/WHITEQUEEN.png"));
             Dimension buttonDimension = buttons[0][0].getSize();
             imgRED = imgRED.getScaledInstance(buttonDimension.width, buttonDimension.height, Image.SCALE_DEFAULT);
             imgWHITE = imgWHITE.getScaledInstance(buttonDimension.width, buttonDimension.height, Image.SCALE_DEFAULT);
+            imgREDQ = imgREDQ.getScaledInstance(buttonDimension.width, buttonDimension.height, Image.SCALE_DEFAULT);
+            imgWHITEQ = imgWHITEQ.getScaledInstance(buttonDimension.width, buttonDimension.height, Image.SCALE_DEFAULT);
 
             for (int i = 0; i < SIZEOFBOARD; i++) {
                 for (int j = 0; j < SIZEOFBOARD; j++) {
@@ -135,6 +139,12 @@ public class Visual {
                         } else if (board[i][j] == -1) {
                             buttons[i][j].setEnabled(true);
                             buttons[i][j].setIcon(new ImageIcon(imgRED));
+                        } else if (board[i][j] == 2){
+                            buttons[i][j].setEnabled(true);
+                            buttons[i][j].setIcon(new ImageIcon(imgWHITEQ));
+                        } else if( board[i][j] == -2){
+                            buttons[i][j].setEnabled(true);
+                            buttons[i][j].setIcon(new ImageIcon(imgREDQ));
                         } else {
                             System.out.println("Błąd. Nieprawidłowa wartość w tablicy");
                         }
