@@ -89,9 +89,22 @@ public class Visual {
             int[] clicked = new int[2];
             clicked[0] = x;
             clicked[1] = y;
-            data.setClicked(clicked);
+            int[][] moves = data.getMoves();
+            if(moves != null){
+                data.setChosenMove(null);
+                for(int i = 0; moves[i][0] != -1 && i < 20; i++){
+                    if(clicked[0] == moves[i][0] && clicked[1] == moves[i][1]){
+                        data.setChosenMove(clicked);
+                    }
+                }
+                if(data.getChosenMove() == null){
+                    System.out.println("Użytkownik wybrał zły pion");
+                }
+            }else{
+                data.setChosenMove(null);
+                data.setClicked(clicked);
+            }
             sendData(data);
-            //tutaj wysyłanie damych do Logic
         }
     }
 
