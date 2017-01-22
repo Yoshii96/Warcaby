@@ -12,7 +12,7 @@ public class Data {
     //tablica, która trzyma x i y, współrzędne kliknięcia, przy inicjalizacji null
     private int[][] moves;
     //tablica możliwch ruchów, maksymalnie 4 możliwe ruchy, współrzędne x i y mówią jakie pole możemy wybrać, na początek nulll
-    private int[] chosenMove;
+    private int chosenMove;
     //tablica, króra trzyma x i y, wybrany ruch, jeden z możliwych, na początek null
     private int[][] lastMove;
     //ostatni ruch komputera, pierwszy wiersz tablicy = gdzie stal wczesniej, drugi wiersz = gdzie teraz, na początek null
@@ -36,7 +36,7 @@ public class Data {
 //                moves[i][j] = -1;
 //            }
 //        }
-        chosenMove = null;
+        chosenMove = -1;
 //        chosenMove = new int[2];
 //        chosenMove[0] = -1;
 //        chosenMove[1] = -1;
@@ -65,7 +65,7 @@ public class Data {
         return moves;
     }
 
-    public int[] getChosenMove() {
+    public int getChosenMove() {
         return chosenMove;
     }
 
@@ -85,7 +85,7 @@ public class Data {
         this.moves = moves;
     }
 
-    public void setChosenMove(int[] chosenMove) {
+    public void setChosenMove(int chosenMove) {
         this.chosenMove = chosenMove;
     }
 
@@ -114,8 +114,8 @@ public class Data {
                 System.out.println("");
             }
         }
-        if (chosenMove != null) {
-            System.out.println("Użytkownik wybrał ruch na pole o wspórzędnych = " + chosenMove[0] + "," + chosenMove[1]);
+        if (chosenMove != -1) {
+            System.out.println("Użytkownik wybrał ruch numer = " + chosenMove);
         }
         if (lastMove != null) {
             System.out.println("Komputer ruszył się z pola " + lastMove[0][0] + "," + lastMove[0][1] + " ,na pole " + lastMove[1][0] + "," + lastMove[1][1]);

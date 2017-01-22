@@ -91,20 +91,23 @@ public class Visual {
             clicked[1] = y;
             int[][] moves = data.getMoves();
             if(moves != null){
-                data.setChosenMove(null);
+                data.setChosenMove(-1);
                 for(int i = 0; moves[i][0] != -1 && i < 20; i++){
                     if(clicked[0] == moves[i][0] && clicked[1] == moves[i][1]){
-                        data.setChosenMove(clicked);
+                        data.setChosenMove(i);
                     }
                 }
-                if(data.getChosenMove() == null){
+                if(data.getChosenMove() == -1){
                     System.out.println("Użytkownik wybrał zły pion");
+                }else{
+                    sendData(data);
                 }
             }else{
-                data.setChosenMove(null);
+                data.setChosenMove(-1);
                 data.setClicked(clicked);
+                sendData(data);
             }
-            sendData(data);
+            
         }
     }
 
